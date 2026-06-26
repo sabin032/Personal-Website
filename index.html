@@ -9,12 +9,12 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --black: #111110;
+    --black: #1a3a5c;
     --white: #faf9f7;
-    --gray: #888884;
-    --light: #f0ede8;
+    --gray: #5a7a9a;
+    --light: #edf2f7;
     --accent: #1a3a5c;
-    --border: #dedad4;
+    --border: #c8d8e8;
     --mono: 'DM Mono', monospace;
     --serif: 'Lora', serif;
   }
@@ -35,7 +35,7 @@
     background: var(--white);
     border-bottom: 1px solid var(--border);
     display: flex; justify-content: space-between; align-items: center;
-    padding: 0 5vw;
+    padding: 0 4vw;
     height: 56px;
   }
   .nav-name {
@@ -50,8 +50,8 @@
   }
   .nav-links a:hover { color: var(--black); }
 
-  /* ── LAYOUT ── */
-  .container { max-width: 860px; margin: 0 auto; padding: 0 5vw; }
+  /* ── LAYOUT — full width ── */
+  .container { width: 100%; padding: 0 4vw; }
 
   section { padding: 80px 0; border-bottom: 1px solid var(--border); }
   section:last-child { border-bottom: none; }
@@ -67,19 +67,52 @@
 
   /* ── HERO ── */
   #hero { padding-top: 140px; padding-bottom: 80px; }
-  .hero-inner { display: grid; grid-template-columns: 1fr 340px; gap: 4rem; align-items: start; }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 180px 1fr 1fr;
+    gap: 4vw; align-items: start;
+  }
+
+  /* ── PHOTO ── */
+  .hero-photo {
+    width: 200px; height: 200px;
+    border-radius: 50%; overflow: hidden;
+    border: 3px solid var(--border);
+    background: var(--light);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 20px rgba(26,58,92,0.12);
+  }
+  .hero-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: top center;
+    display: block;
+    filter: brightness(1.18) contrast(1.05) saturate(1.1);
+  }
+  .hero-photo-placeholder {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 8px;
+    color: var(--gray); text-align: center; padding: 1rem;
+  }
+  .hero-photo-placeholder svg { opacity: 0.4; }
+  .hero-photo-placeholder span {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.05em;
+    text-transform: uppercase; opacity: 0.6; line-height: 1.5;
+  }
+
   .hero-tag {
     font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--gray); margin-bottom: 1.5rem;
   }
   .hero-name {
-    font-size: clamp(2.4rem, 5vw, 3.5rem); font-weight: 400;
-    line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.02em;
+    font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 400;
+    line-height: 1.05; margin-bottom: 1.5rem; letter-spacing: -0.02em;
+    color: var(--black);
   }
   .hero-name em { font-style: italic; color: var(--gray); }
   .hero-bio {
-    font-size: 1rem; color: #444; line-height: 1.8;
-    margin-bottom: 2rem; max-width: 480px;
+    font-size: 1rem; color: #2a4a6a; line-height: 1.8;
+    margin-bottom: 2rem;
   }
   .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
   .btn {
@@ -88,25 +121,18 @@
     cursor: pointer; text-decoration: none; transition: all 0.2s;
     display: inline-block;
   }
-  .btn-solid {
-    background: var(--black); color: var(--white); border: 1px solid var(--black);
-  }
-  .btn-solid:hover { background: var(--accent); border-color: var(--accent); }
-  .btn-outline {
-    background: transparent; color: var(--black); border: 1px solid var(--border);
-  }
+  .btn-solid { background: var(--black); color: var(--white); border: 1px solid var(--black); }
+  .btn-solid:hover { background: #0d2540; border-color: #0d2540; }
+  .btn-outline { background: transparent; color: var(--black); border: 1px solid var(--border); }
   .btn-outline:hover { border-color: var(--black); }
 
   /* Hero stats */
-  .hero-stats { display: flex; flex-direction: column; gap: 0; }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
   .stat-item {
-    padding: 1.25rem 0; border-bottom: 1px solid var(--border);
+    background: var(--white); padding: 1.5rem 1.25rem;
     display: flex; flex-direction: column; gap: 4px;
   }
-  .stat-item:first-child { border-top: 1px solid var(--border); }
-  .stat-num {
-    font-family: var(--mono); font-size: 1.6rem; font-weight: 500; color: var(--black);
-  }
+  .stat-num { font-family: var(--mono); font-size: 2rem; font-weight: 500; color: var(--black); }
   .stat-label {
     font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
     text-transform: uppercase; color: var(--gray);
@@ -115,121 +141,113 @@
   /* ── RESEARCH ── */
   .research-grid { display: flex; flex-direction: column; gap: 0; }
   .research-item {
-    display: grid; grid-template-columns: 80px 1fr auto;
-    gap: 1.5rem; align-items: start;
+    display: grid; grid-template-columns: 90px 1fr auto;
+    gap: 2rem; align-items: start;
     padding: 1.75rem 0; border-bottom: 1px solid var(--border);
   }
   .research-item:last-child { border-bottom: none; }
   .research-status {
     font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em;
     text-transform: uppercase; padding: 4px 8px; border-radius: 2px;
-    text-align: center; margin-top: 4px;
+    text-align: center; margin-top: 4px; white-space: nowrap;
   }
   .status-published { background: #e8f0e8; color: #2a5a2a; }
-  .status-accepted { background: #fff3e0; color: #7a4a00; }
-  .status-ongoing { background: #e8eef8; color: #1a3a5c; }
-  .research-title { font-size: 0.95rem; font-weight: 500; line-height: 1.45; margin-bottom: 0.4rem; }
+  .status-accepted  { background: #fff3e0; color: #7a4a00; }
+  .status-ongoing   { background: #e8eef8; color: #1a3a5c; }
+  .research-title { font-size: 0.95rem; font-weight: 500; line-height: 1.45; margin-bottom: 0.4rem; color: var(--black); }
   .research-venue {
-    font-family: var(--mono); font-size: 11px; color: var(--gray);
-    letter-spacing: 0.03em;
+    font-family: var(--mono); font-size: 11px; color: var(--gray); letter-spacing: 0.03em;
   }
-  .research-authors { font-size: 0.85rem; color: #666; margin-top: 4px; }
-  .research-year {
-    font-family: var(--mono); font-size: 12px; color: var(--gray);
-    white-space: nowrap; margin-top: 4px;
-  }
+  .research-venue a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--border); }
+  .research-venue a:hover { border-color: var(--accent); }
+  .research-authors { font-size: 0.85rem; color: #2a4a6a; margin-top: 4px; }
+  .research-year { font-family: var(--mono); font-size: 12px; color: var(--gray); white-space: nowrap; margin-top: 4px; }
 
   /* ── TEACHING ── */
-  .teaching-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
-  .teaching-card {
-    background: var(--white); padding: 1.5rem;
-    transition: background 0.2s;
-  }
+  .teaching-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); }
+  .teaching-card { background: var(--white); padding: 1.5rem; transition: background 0.2s; }
   .teaching-card:hover { background: var(--light); }
   .teaching-institution {
     font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em;
     text-transform: uppercase; color: var(--gray); margin-bottom: 0.5rem;
   }
-  .teaching-period {
-    font-family: var(--mono); font-size: 11px; color: var(--gray); margin-bottom: 1rem;
-  }
+  .teaching-period { font-family: var(--mono); font-size: 11px; color: var(--gray); margin-bottom: 1rem; }
   .teaching-subjects { list-style: none; display: flex; flex-direction: column; gap: 4px; }
-  .teaching-subjects li {
-    font-size: 0.875rem; color: #444; padding-left: 1rem; position: relative;
-  }
-  .teaching-subjects li::before {
-    content: '–'; position: absolute; left: 0; color: var(--gray);
-  }
+  .teaching-subjects li { font-size: 0.875rem; color: #2a4a6a; padding-left: 1rem; position: relative; }
+  .teaching-subjects li::before { content: '–'; position: absolute; left: 0; color: var(--gray); }
 
   /* ── ABOUT ── */
-  .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .about-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4vw; }
   .about-block h3 {
     font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
     text-transform: uppercase; color: var(--gray); margin-bottom: 1rem;
   }
-  .about-block p { font-size: 0.9rem; color: #444; line-height: 1.8; }
+  .about-block p { font-size: 0.9rem; color: #2a4a6a; line-height: 1.8; }
   .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem; }
   .tag {
     font-family: var(--mono); font-size: 10px; letter-spacing: 0.05em;
     padding: 5px 11px; border: 1px solid var(--border); border-radius: 2px;
     color: var(--gray); text-transform: uppercase;
   }
-  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; }
-  .skill-item {
-    font-family: var(--mono); font-size: 12px; color: #555;
-    display: flex; align-items: center; gap: 8px;
-  }
+  .skills-grid { display: grid; grid-template-columns: 1fr; gap: 0.4rem; }
+  .skill-item { font-family: var(--mono); font-size: 12px; color: #2a4a6a; display: flex; align-items: center; gap: 8px; }
   .skill-item::before { content: '›'; color: var(--gray); }
 
   /* ── CONTACT ── */
   #contact { border-bottom: none; }
-  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-  .contact-headline {
-    font-size: 1.8rem; font-weight: 400; line-height: 1.3;
-    margin-bottom: 1rem;
-  }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; align-items: start; }
+  .contact-headline { font-size: 2rem; font-weight: 400; line-height: 1.3; margin-bottom: 1rem; color: var(--black); }
   .contact-headline em { font-style: italic; color: var(--gray); }
-  .contact-note { font-size: 0.9rem; color: #666; line-height: 1.7; margin-bottom: 1.5rem; }
+  .contact-note { font-size: 0.9rem; color: #2a4a6a; line-height: 1.7; margin-bottom: 1.5rem; }
   .contact-links { display: flex; flex-direction: column; gap: 0; }
   .contact-link {
     display: flex; justify-content: space-between; align-items: center;
     padding: 0.9rem 0; border-bottom: 1px solid var(--border);
-    text-decoration: none; color: var(--black);
-    transition: padding-left 0.2s;
+    text-decoration: none; color: var(--black); transition: padding-left 0.2s;
   }
   .contact-link:first-child { border-top: 1px solid var(--border); }
-  .contact-link:hover { padding-left: 8px; color: var(--accent); }
+  .contact-link:hover { padding-left: 8px; color: #0d2540; }
   .contact-link-label { font-size: 0.9rem; }
-  .contact-link-value {
-    font-family: var(--mono); font-size: 11px; color: var(--gray);
-  }
-  .contact-link:hover .contact-link-value { color: var(--accent); }
+  .contact-link-value { font-family: var(--mono); font-size: 11px; color: var(--gray); }
+  .contact-link:hover .contact-link-value { color: #0d2540; }
 
   /* ── FOOTER ── */
   footer {
-    padding: 2rem 5vw; border-top: 1px solid var(--border);
+    padding: 2rem 4vw; border-top: 1px solid var(--border);
     display: flex; justify-content: space-between; align-items: center;
   }
   .footer-name { font-family: var(--mono); font-size: 12px; color: var(--gray); }
-  .footer-nec { font-family: var(--mono); font-size: 11px; color: var(--gray); }
+  .footer-nec  { font-family: var(--mono); font-size: 11px; color: var(--gray); }
 
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-  .hero-tag   { animation: fadeUp 0.6s ease both; }
-  .hero-name  { animation: fadeUp 0.6s 0.1s ease both; }
-  .hero-bio   { animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-photo   { animation: fadeUp 0.6s ease both; }
+  .hero-tag     { animation: fadeUp 0.6s 0.05s ease both; }
+  .hero-name    { animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-bio     { animation: fadeUp 0.6s 0.2s ease both; }
   .hero-actions { animation: fadeUp 0.6s 0.3s ease both; }
-  .hero-stats { animation: fadeUp 0.6s 0.15s ease both; }
+  .hero-stats   { animation: fadeUp 0.6s 0.15s ease both; }
 
   /* ── RESPONSIVE ── */
+  @media (max-width: 1000px) {
+    .hero-inner { grid-template-columns: 180px 1fr; }
+    .hero-stats { grid-column: 1 / -1; grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .teaching-grid { grid-template-columns: 1fr 1fr; }
+    .about-inner   { grid-template-columns: 1fr 1fr; }
+  }
   @media (max-width: 680px) {
-    .hero-inner, .about-inner, .contact-inner { grid-template-columns: 1fr; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-photo { width: 120px; height: 120px; }
+    .about-inner, .contact-inner { grid-template-columns: 1fr; }
     .teaching-grid { grid-template-columns: 1fr; }
     .research-item { grid-template-columns: 1fr; gap: 0.5rem; }
     .research-year { display: none; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
     nav { padding: 0 1.25rem; }
     .nav-links { gap: 1rem; }
     .nav-links a { font-size: 10px; }
@@ -253,6 +271,13 @@
 <section id="hero">
   <div class="container">
     <div class="hero-inner">
+
+      <!-- PHOTO: rename your image to photo.jpg and place it in the same folder as index.html -->
+      <div class="hero-photo">
+        <img src="IMG_7181.jpg" alt="Sabin Kasula"
+          onerror="this.parentElement.innerHTML='<div class=\'hero-photo-placeholder\'><svg width=\'48\' height=\'48\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.2\'><circle cx=\'12\' cy=\'8\' r=\'4\'/><path d=\'M4 20c0-4 3.6-7 8-7s8 3 8 7\'/></svg><span>Upload photo.jpg to your repo</span></div>'" />
+      </div>
+
       <div>
         <p class="hero-tag">Lecturer · Electrical Engineer · Bhaktapur, Nepal</p>
         <h1 class="hero-name">Sabin<br>Kasula<em>.</em></h1>
@@ -267,13 +292,14 @@
           <a href="#contact" class="btn btn-outline">Get in Touch</a>
         </div>
       </div>
+
       <div class="hero-stats">
         <div class="stat-item">
-          <span class="stat-num">3+</span>
+          <span class="stat-num">4+</span>
           <span class="stat-label">Years Teaching</span>
         </div>
         <div class="stat-item">
-          <span class="stat-num">3</span>
+          <span class="stat-num">4</span>
           <span class="stat-label">Research Papers</span>
         </div>
         <div class="stat-item">
@@ -281,10 +307,11 @@
           <span class="stat-label">Institutions</span>
         </div>
         <div class="stat-item">
-          <span class="stat-num">MSc</span>
-          <span class="stat-label">Running · Pulchowk Campus</span>
+          <span class="stat-num">M.Sc</span>
+          <span class="stat-label">M.Sc in Power Electronics and Drive Engineering, Institute of Engineering, Pulchowk Campus, TU</span>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -299,7 +326,10 @@
         <span class="research-status status-published">Published</span>
         <div>
           <p class="research-title">Implementation of Indirect Field Oriented Control Using Space Vector Pulse Width Modulation for the Control of Induction Motor</p>
-          <p class="research-venue">International Journal on Engineering Technology, Vol. 1(1), pp. 139–152</p>
+          <p class="research-venue">
+            International Journal on Engineering Technology, Vol. 1(1), pp. 139–152 &nbsp;·&nbsp;
+            <a href="https://doi.org/10.3126/injet.v1i1.60936" target="_blank">https://doi.org/10.3126/injet.v1i1.60936</a>
+          </p>
           <p class="research-authors">Kasula, S., Shrestha, B., Katwal, K., &amp; Dahal, R.</p>
         </div>
         <span class="research-year">2023</span>
@@ -310,7 +340,7 @@
         <div>
           <p class="research-title">Modeling and Optimization of Separately Excited DC Motor Using Genetic Algorithm and Particle Swarm Optimization with Comparison of PID Performance Indices</p>
           <p class="research-venue">International Journal on Power Electronics · Inderscience</p>
-          <p class="research-authors">Sabin Kasula, Dr. Rajesh M. Pindoriya</p>
+          <p class="research-authors">Sabin Kasula, Rajesh M. Pindoriya</p>
         </div>
         <span class="research-year">Forthcoming</span>
       </div>
@@ -326,13 +356,23 @@
       </div>
 
       <div class="research-item">
+        <span class="research-status status-accepted">Accepted</span>
+        <div>
+          <p class="research-title">Design and Simulation of a PQ Theory-Based Shunt Active Power Filter with Parameter Selection and Optimized PI Controller for Power Quality Enhancement</p>
+          <p class="research-venue">IEEE SeFET 2026 · IEEE Xplore</p>
+          <p class="research-authors">Sabin Kasula, Rajesh M. Pindoriya, Jeetendra Chaudhary</p>
+        </div>
+        <span class="research-year">Forthcoming</span>
+      </div>
+
+      <div class="research-item">
         <span class="research-status status-ongoing">MSc Thesis</span>
         <div>
-          <p class="research-title">Advanced research in Power Electronics, Drive Systems, and Renewable Energy Modelling</p>
-          <p class="research-venue">Pulchowk Campus, Tribhuvan University</p>
-          <p class="research-authors">Dept. topper — 1st &amp; 2nd Semester (85.75% / 84.75%)</p>
+          <p class="research-title">PQ Theory-Based Modelling and Simulation of a Shunt Active Power Filter for Improving Power Quality Using Optimized PI Controller</p>
+          <p class="research-venue">Pulchowk Campus, Tribhuvan University · Dept. of Electrical Engineering</p>
+          <p class="research-authors">Supervised by Dr. Rajesh M. Pindoriya, and Jeetendra Chaudhary </p>
         </div>
-        <span class="research-year">2024 →</span>
+        <span class="research-year">2026 →</span>
       </div>
 
     </div>
@@ -347,7 +387,7 @@
 
       <div class="teaching-card">
         <p class="teaching-institution">Khwopa College of Engineering · TU</p>
-        <p class="teaching-period">April 2025 – Present &nbsp;·&nbsp; Lecturer</p>
+        <p class="teaching-period">April 2025 – Present &nbsp;·&nbsp; Full-Time, Lecturer</p>
         <ul class="teaching-subjects">
           <li>Power Electronics</li>
           <li>Electrical Circuit and Machines</li>
@@ -357,7 +397,7 @@
 
       <div class="teaching-card">
         <p class="teaching-institution">Kantipur Engineering College · TU</p>
-        <p class="teaching-period">Dec 2021 – April 2025 &nbsp;·&nbsp; Lecturer</p>
+        <p class="teaching-period">Dec 2021 – April 2025 &nbsp;·&nbsp; Full-Time, Lecturer</p>
         <ul class="teaching-subjects">
           <li>Control System</li>
           <li>Electrical Circuit and Machines</li>
@@ -398,11 +438,11 @@
           <h3>Background</h3>
           <p>
             I grew up in Bhaktapur and completed my Bachelor of Engineering in Electrical Engineering
-            at Khwopa College of Engineering (Top 5 of class, 75.62%). I began teaching almost
+            at Khwopa College of Engineering (75.62%). I began teaching almost
             immediately after graduation — a path that has deepened my understanding of both
             engineering fundamentals and how to communicate complex ideas clearly.
             I am a registered engineer with the Nepal Engineering Council (NEC Reg. No. 3032 Electrical 'A')
-            and a member of the Nepal Engineer's Association.
+            and a member of the Nepal Engineers' Association.
           </p>
         </div>
         <div class="about-block">
@@ -419,33 +459,33 @@
           </div>
         </div>
       </div>
-      <div>
-        <div class="about-block" style="margin-bottom:2.5rem;">
-          <h3>Software &amp; Tools</h3>
-          <div class="skills-grid">
-            <span class="skill-item">MATLAB Simulink</span>
-            <span class="skill-item">PLECS</span>
-            <span class="skill-item">Typhoon HIL</span>
-            <span class="skill-item">Multisim</span>
-            <span class="skill-item">Proteus</span>
-            <span class="skill-item">Python</span>
-            <span class="skill-item">Arduino IDE</span>
-            <span class="skill-item">AutoCAD</span>
-            <span class="skill-item">LaTeX</span>
-            <span class="skill-item">Adobe Photoshop</span>
-          </div>
+      <div class="about-block">
+        <h3>Software &amp; Tools</h3>
+        <div class="skills-grid">
+          <span class="skill-item">MATLAB Simulink</span>
+          <span class="skill-item">PLECS</span>
+          <span class="skill-item">Typhoon HIL</span>
+          <span class="skill-item">Multisim</span>
+          <span class="skill-item">Proteus</span>
+          <span class="skill-item">Python</span>
+          <span class="skill-item">Arduino IDE</span>
+          <span class="skill-item">AutoCAD</span>
+          <span class="skill-item">LaTeX</span>
+          <span class="skill-item">Adobe Photoshop</span>
         </div>
-        <div class="about-block">
-          <h3>Education</h3>
-          <p style="margin-bottom:0.75rem;">
-            <strong style="font-weight:500;">MSc Power Electronics &amp; Drive Engineering</strong><br>
-            <span style="font-size:0.85rem;color:#666;">Pulchowk Campus, TU  2024</span>
-          </p>
-          <p>
-            <strong style="font-weight:500;">BE Electrical Engineering</strong><br>
-            <span style="font-size:0.85rem;color:#666;">Khwopa College of Engineering, TU — 2021</span>
-          </p>
-        </div>
+      </div>
+      <div class="about-block">
+        <h3>Education</h3>
+        <p style="margin-bottom:1rem;">
+          <strong style="font-weight:500;">MSc Power Electronics &amp; Drive Engineering</strong><br>
+          <span style="font-size:0.85rem;color:#5a7a9a;">Pulchowk Campus, TU — (2026)</span><br>
+          <span style="font-size:0.82rem;color:#7a9aba;">1st Sem, &amp; 2nd Sem, &amp; 3rd Sem, &amp; and 4th Sem (Topper in all Semester)   — 85.75% / 84.75% / 91% / 89%</span>
+        </p>
+        <p>
+          <strong style="font-weight:500;">BE Electrical Engineering</strong><br>
+          <span style="font-size:0.85rem;color:#5a7a9a;">Khwopa College of Engineering, TU — 2021</span><br>
+          <span style="font-size:0.82rem;color:#7a9aba;">75.62%</span>
+        </p>
       </div>
     </div>
   </div>
@@ -459,7 +499,7 @@
       <div>
         <h2 class="contact-headline">Let's talk about <em>circuits, research,<br>or collaboration.</em></h2>
         <p class="contact-note">
-          Whether you're a student with a question, a fellow researcher, a journal editor,
+          Whether you're a student with a question, a fellow researcher, or a journal editor,
           or an institution looking for collaboration — feel free to reach out.
           I am also available for external examination and project supervision.
         </p>
@@ -478,13 +518,21 @@
           <span class="contact-link-label">Phone</span>
           <span class="contact-link-value">+977-9849749272</span>
         </a>
-        <a href="#" class="contact-link">
+        <a href="https://www.researchgate.net/profile/Sabin-Kasula?ev=hdr_xprf" target="_blank" class="contact-link">
           <span class="contact-link-label">ResearchGate</span>
-          <span class="contact-link-value">sabin-kasula</span>
+          <span class="contact-link-value">sabin-kasula →</span>
         </a>
-        <a href="#" class="contact-link">
+        <a href="https://scholar.google.com/citations?user=IILcKUYAAAAJ&hl=en" target="_blank" class="contact-link">
           <span class="contact-link-label">Google Scholar</span>
-          <span class="contact-link-value">Sabin Kasula</span>
+          <span class="contact-link-value">Sabin Kasula →</span>
+        </a>
+        <a href="https://www.linkedin.com/in/sabin-kasula-687825193/" target="_blank" class="contact-link">
+          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-value">sabin-kasula →</span>
+        </a>
+        <a href="https://orcid.org/0009-0007-0618-6706" target="_blank" class="contact-link">
+          <span class="contact-link-label">ORCID iD</span>
+          <span class="contact-link-value">0009-0007-0618-6706 →</span>
         </a>
         <div class="contact-link" style="cursor:default;">
           <span class="contact-link-label">Location</span>

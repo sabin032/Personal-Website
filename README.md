@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sabin Kasula — Electrical Engineer &amp; Lecturer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1a2e4a;
+    --navy-light: #223558;
+    --gold: #c8922a;
+    --gold-light: #e6ab45;
+    --cream: #f8f6f1;
+    --white: #ffffff;
+    --text-dark: #1c1c1e;
+    --text-mid: #44444a;
+    --text-muted: #6e6e78;
+    --border: #e2ddd6;
+    --border-strong: #c8c0b4;
+    --sidebar-width: 260px;
+    --header-h: 72px;
+    --radius: 8px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* HEADER */
+  .site-header {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--navy);
+    height: var(--header-h);
+    display: flex; align-items: center;
+    padding: 0 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.20);
+  }
+  .header-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-badge {
+    width: 40px; height: 40px; background: var(--gold); border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; color: #fff; letter-spacing: -0.5px;
+  }
+  .logo-text { color: #fff; font-size: 15px; font-weight: 500; line-height: 1.3; }
+  .logo-sub  { color: rgba(255,255,255,0.55); font-size: 12px; font-weight: 400; }
+  .header-nav { margin-left: auto; display: flex; gap: 0; }
+  .header-nav a {
+    color: rgba(255,255,255,0.75); text-decoration: none;
+    font-size: 13px; font-weight: 500;
+    padding: 6px 14px; border-radius: 4px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .header-nav a:hover, .header-nav a.active { background: rgba(255,255,255,0.12); color: #fff; }
+
+  /* PROFILE HERO */
+  .profile-hero { background: var(--navy); padding: 2.5rem 2rem 3.5rem; }
+  .profile-hero-inner {
+    max-width: 1080px; margin: 0 auto;
+    display: flex; align-items: flex-start; gap: 2rem;
+  }
+  .profile-avatar {
+    width: 120px; height: 120px; border-radius: 50%;
+    border: 3px solid var(--gold); object-fit: cover; flex-shrink: 0;
+    background: var(--navy-light);
+  }
+  .profile-info { flex: 1; }
+  .profile-name {
+    font-family: 'Lora', serif; font-size: 2rem; font-weight: 600;
+    color: #fff; line-height: 1.2; margin-bottom: 6px;
+  }
+  .profile-title {
+    color: var(--gold-light); font-size: 14px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 10px;
+  }
+  .profile-dept { color: rgba(255,255,255,0.70); font-size: 14px; margin-bottom: 16px; }
+  .profile-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    background: rgba(200,146,42,0.18); border: 1px solid rgba(200,146,42,0.35);
+    color: var(--gold-light); font-size: 12px; font-weight: 500;
+    padding: 3px 10px; border-radius: 20px;
+  }
+  .profile-contact {
+    margin-left: auto; display: flex; flex-direction: column;
+    gap: 10px; align-items: flex-end; flex-shrink: 0;
+  }
+  .contact-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--gold); color: #fff; font-size: 13px; font-weight: 600;
+    padding: 9px 18px; border-radius: 6px; text-decoration: none;
+    transition: background 0.15s; border: none; cursor: pointer;
+  }
+  .contact-btn:hover { background: var(--gold-light); }
+  .contact-link {
+    color: rgba(255,255,255,0.60); font-size: 12px; text-decoration: none;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .contact-link:hover { color: #fff; }
+
+  /* STAT BAR */
+  .stat-bar { background: var(--navy-light); border-top: 1px solid rgba(255,255,255,0.08); }
+  .stat-bar-inner { max-width: 1080px; margin: 0 auto; display: flex; }
+  .stat-item {
+    flex: 1; padding: 14px 20px; text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-size: 22px; font-weight: 700; color: var(--gold-light); display: block; }
+  .stat-lbl { font-size: 11px; color: rgba(255,255,255,0.50); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* BODY LAYOUT */
+  .body-wrap {
+    max-width: 1080px; margin: 0 auto;
+    display: flex; gap: 2rem; padding: 2rem; align-items: flex-start;
+  }
+
+  /* SIDEBAR */
+  .sidebar { width: var(--sidebar-width); flex-shrink: 0; position: sticky; top: calc(var(--header-h) + 1.5rem); }
+  .sidebar-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+    overflow: hidden; margin-bottom: 1.25rem; box-shadow: var(--shadow-sm);
+  }
+  .sidebar-card-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.7px; color: var(--text-muted);
+    padding: 12px 16px 10px; border-bottom: 1px solid var(--border);
+  }
+  .sidebar-nav { list-style: none; }
+  .sidebar-nav li a {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 16px; font-size: 13.5px; color: var(--text-mid);
+    text-decoration: none; border-left: 3px solid transparent;
+    transition: background 0.12s, color 0.12s, border-color 0.12s;
+  }
+  .sidebar-nav li a:hover { background: var(--cream); color: var(--navy); }
+  .sidebar-nav li a.active {
+    background: #eef3f8; color: var(--navy);
+    font-weight: 600; border-left-color: var(--gold);
+  }
+  .sidebar-nav li a .nav-icon { font-size: 14px; width: 18px; text-align: center; opacity: 0.6; }
+  .sidebar-info { padding: 14px 16px; }
+  .info-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; font-size: 12.5px; color: var(--text-mid); }
+  .info-row:last-child { margin-bottom: 0; }
+  .info-icon { color: var(--gold); margin-top: 1px; flex-shrink: 0; font-size: 13px; }
+  .info-label { color: var(--text-muted); font-size: 11px; margin-bottom: 1px; }
+
+  /* MAIN */
+  .main { flex: 1; min-width: 0; }
+
+  .section-tabs {
+    display: flex; background: var(--white);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    overflow: hidden; margin-bottom: 1.5rem; box-shadow: var(--shadow-sm);
+  }
+  .section-tab {
+    flex: 1; padding: 11px 8px; text-align: center;
+    font-size: 12.5px; font-weight: 500; color: var(--text-muted);
+    text-decoration: none; border-right: 1px solid var(--border);
+    transition: background 0.12s, color 0.12s; cursor: pointer;
+    background: none; border-top: none; border-bottom: none; border-left: none;
+  }
+  .section-tab:last-child { border-right: none; }
+  .section-tab:hover { background: var(--cream); color: var(--text-dark); }
+  .section-tab.active { background: var(--navy); color: #fff; font-weight: 600; }
+
+  .content-section { display: none; }
+  .content-section.active { display: block; }
+
+  .section-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius); margin-bottom: 1.25rem;
+    box-shadow: var(--shadow-sm); overflow: hidden;
+  }
+  .section-card-header {
+    padding: 16px 20px 14px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-card-title { font-size: 15px; font-weight: 600; color: var(--navy); }
+  .section-card-badge {
+    margin-left: auto; background: #eef3f8; color: var(--navy);
+    font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 10px;
+  }
+  .section-card-body { padding: 18px 20px; }
+
+  /* About bio */
+  .bio-text { font-size: 14.5px; line-height: 1.75; color: var(--text-mid); margin-bottom: 1rem; }
+  .bio-text:last-child { margin-bottom: 0; }
+
+  /* Research interests */
+  .research-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
+  .research-chip {
+    background: var(--cream); border: 1px solid var(--border);
+    border-left: 3px solid var(--gold); border-radius: 4px;
+    padding: 10px 12px; font-size: 13px; font-weight: 500; color: var(--text-dark);
+  }
+  .research-chip span { display: block; font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 400; }
+
+  /* Tools grid */
+  .tools-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tool-pill {
+    background: var(--cream); border: 1px solid var(--border-strong);
+    color: var(--text-mid); font-size: 12.5px; font-weight: 500;
+    padding: 4px 12px; border-radius: 20px;
+  }
+
+  /* Teaching */
+  .institution-block { margin-bottom: 1.5rem; }
+  .institution-block:last-child { margin-bottom: 0; }
+  .institution-header {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding-bottom: 10px; margin-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .institution-icon {
+    width: 36px; height: 36px; border-radius: 6px;
+    background: #eef3f8; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .institution-name { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+  .institution-meta { font-size: 12.5px; color: var(--text-muted); }
+  .institution-badge {
+    margin-left: auto; font-size: 11px; font-weight: 600;
+    padding: 2px 9px; border-radius: 10px; white-space: nowrap; flex-shrink: 0;
+  }
+  .badge-fulltime { background: #eef7ee; color: #2e7d32; border: 1px solid #9acf99; }
+  .badge-visiting { background: #fff8ee; color: #7a5200; border: 1px solid #e6c87a; }
+  .subject-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding-left: 48px; }
+  .subject-pill {
+    background: var(--cream); border: 1px solid var(--border);
+    color: var(--text-mid); font-size: 12.5px; font-weight: 500;
+    padding: 4px 10px; border-radius: 5px;
+  }
+
+  /* Publications */
+  .pub-item {
+    padding: 16px 0; border-bottom: 1px solid var(--border);
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .pub-item:last-child { border-bottom: none; }
+  .pub-year { font-size: 12px; font-weight: 700; color: var(--gold); min-width: 40px; margin-top: 2px; }
+  .pub-body { flex: 1; }
+  .pub-title { font-size: 13.5px; font-weight: 600; color: var(--navy); margin-bottom: 4px; line-height: 1.4; }
+  .pub-authors { font-size: 12.5px; color: var(--text-muted); margin-bottom: 4px; }
+  .pub-journal { font-size: 12.5px; font-style: italic; color: var(--text-mid); margin-bottom: 6px; }
+  .pub-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .pub-badge {
+    font-size: 11px; font-weight: 500; padding: 2px 8px;
+    border-radius: 10px; border: 1px solid;
+  }
+  .badge-published  { background: #eef7ee; border-color: #9acf99; color: #2e7d32; }
+  .badge-accepted   { background: #eef3f8; border-color: #aac4de; color: #1a4b7a; }
+  .badge-thesis     { background: #f3eefb; border-color: #c4aaee; color: #4a1a7a; }
+  .badge-ieee       { background: #fff0ee; border-color: #e6aaa0; color: #7a2010; }
+  .badge-doi        { background: #fff8ee; border-color: #e6c87a; color: #7a5200; cursor: pointer; }
+
+  /* Awards */
+  .award-item { display: flex; align-items: flex-start; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--border); }
+  .award-item:last-child { border-bottom: none; }
+  .award-icon {
+    width: 36px; height: 36px; border-radius: 6px;
+    background: #fff8ee; border: 1px solid #e6c87a;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .award-body { flex: 1; }
+  .award-name { font-size: 13.5px; font-weight: 600; color: var(--text-dark); margin-bottom: 3px; }
+  .award-org  { font-size: 12.5px; color: var(--text-muted); }
+
+  /* Contact */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .contact-card {
+    background: var(--cream); border: 1px solid var(--border);
+    border-radius: 6px; padding: 14px 16px;
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .contact-card-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .contact-card-label { font-size: 11px; color: var(--text-muted); margin-bottom: 3px; }
+  .contact-card-value { font-size: 13.5px; font-weight: 500; color: var(--navy); word-break: break-all; }
+  .contact-card a { color: var(--navy); text-decoration: none; }
+  .contact-card a:hover { color: var(--gold); text-decoration: underline; }
+
+  @media (max-width: 768px) {
+    .body-wrap { flex-direction: column; padding: 1rem; }
+    .sidebar { width: 100%; position: static; }
+    .profile-hero-inner { flex-direction: column; }
+    .profile-contact { align-items: flex-start; }
+    .stat-item { padding: 10px; }
+    .stat-num { font-size: 18px; }
+    .header-nav { display: none; }
+    .research-grid { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a class="header-logo" href="#">
+    <div class="logo-badge">SK</div>
+    <div>
+      <div class="logo-text">Sabin Kasula</div>
+      <div class="logo-sub">Khwopa College of Engineering · TU</div>
+    </div>
+  </a>
+  <nav class="header-nav">
+    <a href="#" class="active" onclick="showSection('about',this);return false;">Home</a>
+    <a href="#" onclick="showSection('teaching',this);return false;">Teaching</a>
+    <a href="#" onclick="showSection('publications',this);return false;">Research</a>
+    <a href="#" onclick="showSection('awards',this);return false;">Recognition</a>
+    <a href="#" onclick="showSection('contact',this);return false;">Contact</a>
+  </nav>
+</header>
+
+<!-- PROFILE HERO -->
+<div class="profile-hero">
+  <div class="profile-hero-inner">
+    <img class="profile-avatar" src="https://sabinkasula.com.np/IMG_7181.jpg" alt="Sabin Kasula" onerror="this.style.display='none';document.getElementById('avatar-fallback').style.display='flex';" />
+    <div id="avatar-fallback" style="width:120px;height:120px;border-radius:50%;border:3px solid var(--gold);background:var(--navy-light);display:none;align-items:center;justify-content:center;font-size:36px;font-weight:700;color:var(--gold);flex-shrink:0;">SK</div>
+    <div class="profile-info">
+      <div class="profile-name">Sabin Kasula</div>
+      <div class="profile-title">Lecturer · Electrical Engineer</div>
+      <div class="profile-dept">Khwopa College of Engineering, Tribhuvan University · Bhaktapur, Nepal</div>
+      <div class="profile-tags">
+        <span class="tag">Power Electronics</span>
+        <span class="tag">Electrical Drives</span>
+        <span class="tag">Power Quality</span>
+        <span class="tag">Control Systems</span>
+        <span class="tag">Active Power Filters</span>
+        <span class="tag">MATLAB/Simulink</span>
+      </div>
+    </div>
+    <div class="profile-contact">
+      <a href="mailto:sabin.kasula@gmail.com" class="contact-btn">✉ Contact me</a>
+      <a href="https://scholar.google.com/citations?user=IILcKUYAAAAJ&hl=en" target="_blank" class="contact-link">🎓 Google Scholar</a>
+      <a href="https://www.linkedin.com/in/sabin-kasula-687825193/" target="_blank" class="contact-link">🔗 LinkedIn</a>
+      <a href="https://orcid.org/0009-0007-0618-6706" target="_blank" class="contact-link">📄 ORCID 0009-0007-0618-6706</a>
+      <a href="https://www.researchgate.net/profile/Sabin-Kasula" target="_blank" class="contact-link">🔬 ResearchGate</a>
+    </div>
+  </div>
+</div>
+
+<!-- STAT BAR -->
+<div class="stat-bar">
+  <div class="stat-bar-inner">
+    <div class="stat-item"><span class="stat-num">4+</span><span class="stat-lbl">Years Teaching</span></div>
+    <div class="stat-item"><span class="stat-num">4</span><span class="stat-lbl">Research Papers</span></div>
+    <div class="stat-item"><span class="stat-num">4</span><span class="stat-lbl">Institutions</span></div>
+    <div class="stat-item"><span class="stat-num">85.75%</span><span class="stat-lbl">MSc Sem 1 Score</span></div>
+    <div class="stat-item"><span class="stat-num">Topper</span><span class="stat-lbl">All MSc Semesters</span></div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-card-title">Navigation</div>
+      <ul class="sidebar-nav">
+        <li><a href="#" class="active" id="nav-about"        onclick="showSection('about',this);return false;"><span class="nav-icon">👤</span> About</a></li>
+        <li><a href="#" id="nav-teaching"     onclick="showSection('teaching',this);return false;"><span class="nav-icon">📚</span> Teaching</a></li>
+        <li><a href="#" id="nav-publications" onclick="showSection('publications',this);return false;"><span class="nav-icon">📝</span> Research &amp; Publications</a></li>
+        <li><a href="#" id="nav-awards"       onclick="showSection('awards',this);return false;"><span class="nav-icon">🏆</span> Recognition</a></li>
+        <li><a href="#" id="nav-contact"      onclick="showSection('contact',this);return false;"><span class="nav-icon">✉</span> Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-card-title">Contact</div>
+      <div class="sidebar-info">
+        <div class="info-row">
+          <span class="info-icon">📍</span>
+          <div><div class="info-label">Location</div>Changunarayan 02, Bhaktapur, Nepal</div>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">✉</span>
+          <div><div class="info-label">Personal</div>sabin.kasula@gmail.com</div>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">📞</span>
+          <div><div class="info-label">Phone</div>+977-9849749272</div>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">🪪</span>
+          <div><div class="info-label">NEC Registration</div>No. 3032 Electrical 'A'</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-card-title">Education</div>
+      <div class="sidebar-info">
+        <div class="info-row">
+          <span class="info-icon">🎓</span>
+          <div>
+            <div class="info-label">MSc Power Electronics &amp; Drive Eng.</div>
+            Pulchowk Campus, IOE, TU — 2026<br>
+            <span style="color:var(--gold);font-weight:600;font-size:12px;">Topper all semesters</span> · 85.75% / 84.75% / 91% / 89%
+          </div>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">🎓</span>
+          <div>
+            <div class="info-label">BE Electrical Engineering</div>
+            Khwopa College of Engineering, TU — 2021 · 75.62%
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="section-tabs">
+      <button class="section-tab active" id="tab-about"        onclick="showSection('about',this)">About</button>
+      <button class="section-tab"        id="tab-teaching"     onclick="showSection('teaching',this)">Teaching</button>
+      <button class="section-tab"        id="tab-publications" onclick="showSection('publications',this)">Research</button>
+      <button class="section-tab"        id="tab-awards"       onclick="showSection('awards',this)">Recognition</button>
+      <button class="section-tab"        id="tab-contact"      onclick="showSection('contact',this)">Contact</button>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="content-section active" id="section-about">
+      <div class="section-card">
+        <div class="section-card-header"><div class="section-card-title">Biography</div></div>
+        <div class="section-card-body">
+          <p class="bio-text">
+            Sabin Kasula is a Lecturer in Electrical Engineering at Khwopa College of Engineering, Tribhuvan University, and is currently pursuing an MSc in Power Electronics and Drive Engineering at Pulchowk Campus (IOE, TU) — where he has been the topper in all four semesters.
+          </p>
+          <p class="bio-text">
+            He teaches power electronics, electrical machines, and control systems, and researches how smarter motor control and power quality solutions can make electrical systems work better for everyone. He began teaching almost immediately after completing his BE, a path that has deepened his understanding of both engineering fundamentals and the communication of complex ideas.
+          </p>
+          <p class="bio-text">
+            Sabin is a registered engineer with the Nepal Engineering Council (NEC Reg. No. 3032 Electrical 'A') and a member of the Nepal Engineers' Association (NEA). He has taught across four institutions and published research in international journals and IEEE conferences. He is available for external examination, project supervision, and research collaboration.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-card-header"><div class="section-card-title">Research Interests</div></div>
+        <div class="section-card-body">
+          <div class="research-grid">
+            <div class="research-chip">Power Quality &amp; Harmonics<span>Active power filters, THD reduction</span></div>
+            <div class="research-chip">Power Electronics<span>Converters, inverters, PWM</span></div>
+            <div class="research-chip">Electrical Drives<span>Induction motor control, FOC</span></div>
+            <div class="research-chip">Control Systems<span>PID, optimisation, genetic algorithms</span></div>
+            <div class="research-chip">Multilevel Inverters<span>Topology design &amp; modulation</span></div>
+            <div class="research-chip">Electrical Machines<span>DC &amp; AC machine modelling</span></div>
+            <div class="research-chip">Renewable Energy<span>Grid integration</span></div>
+            <div class="research-chip">Active Power Filters<span>Shunt APF, PQ theory</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-card-header"><div class="section-card-title">Software &amp; Tools</div></div>
+        <div class="section-card-body">
+          <div class="tools-grid">
+            <span class="tool-pill">MATLAB</span>
+            <span class="tool-pill">Simulink</span>
+            <span class="tool-pill">PLECS</span>
+            <span class="tool-pill">Typhoon HIL</span>
+            <span class="tool-pill">Multisim</span>
+            <span class="tool-pill">Proteus</span>
+            <span class="tool-pill">Python</span>
+            <span class="tool-pill">Arduino IDE</span>
+            <span class="tool-pill">AutoCAD</span>
+            <span class="tool-pill">LaTeX</span>
+            <span class="tool-pill">Adobe Photoshop</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEACHING -->
+    <div class="content-section" id="section-teaching">
+      <div class="section-card">
+        <div class="section-card-header">
+          <div class="section-card-title">Teaching Experience</div>
+          <span class="section-card-badge">4 Institutions</span>
+        </div>
+        <div class="section-card-body">
+
+          <div class="institution-block">
+            <div class="institution-header">
+              <div class="institution-icon">🏫</div>
+              <div>
+                <div class="institution-name">Khwopa College of Engineering · TU</div>
+                <div class="institution-meta">April 2025 – Present</div>
+              </div>
+              <span class="institution-badge badge-fulltime">Full-Time Lecturer</span>
+            </div>
+            <ul class="subject-list">
+              <li class="subject-pill">Power Electronics</li>
+              <li class="subject-pill">Electrical Circuit and Machines</li>
+              <li class="subject-pill">Advanced Power System</li>
+            </ul>
+          </div>
+
+          <div class="institution-block">
+            <div class="institution-header">
+              <div class="institution-icon">🏫</div>
+              <div>
+                <div class="institution-name">Kantipur Engineering College · TU</div>
+                <div class="institution-meta">Dec 2021 – April 2025</div>
+              </div>
+              <span class="institution-badge badge-fulltime">Full-Time Lecturer</span>
+            </div>
+            <ul class="subject-list">
+              <li class="subject-pill">Control System</li>
+              <li class="subject-pill">Electrical Circuit and Machines</li>
+              <li class="subject-pill">Basic Electrical Engineering</li>
+              <li class="subject-pill">Fundamentals of Electrical &amp; Electronics Eng.</li>
+              <li class="subject-pill">Practical Lab Lead (all subjects)</li>
+            </ul>
+          </div>
+
+          <div class="institution-block">
+            <div class="institution-header">
+              <div class="institution-icon">🏫</div>
+              <div>
+                <div class="institution-name">Kantipur Valley College · Purbanchwal University</div>
+                <div class="institution-meta">Jan 2024</div>
+              </div>
+              <span class="institution-badge badge-visiting">Visiting Lecturer</span>
+            </div>
+            <ul class="subject-list">
+              <li class="subject-pill">Electrical Engineering</li>
+            </ul>
+          </div>
+
+          <div class="institution-block">
+            <div class="institution-header">
+              <div class="institution-icon">🏫</div>
+              <div>
+                <div class="institution-name">National College of Engineering · TU</div>
+                <div class="institution-meta">April 2023</div>
+              </div>
+              <span class="institution-badge badge-visiting">Visiting Lecturer</span>
+            </div>
+            <ul class="subject-list">
+              <li class="subject-pill">Electrical Circuit and Machines</li>
+              <li class="subject-pill">External Examiner — Kathmandu Valley colleges</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- PUBLICATIONS -->
+    <div class="content-section" id="section-publications">
+      <div class="section-card">
+        <div class="section-card-header">
+          <div class="section-card-title">Research &amp; Publications</div>
+          <span class="section-card-badge">4 papers</span>
+        </div>
+        <div class="section-card-body">
+
+          <div class="pub-item">
+            <div class="pub-year">2023</div>
+            <div class="pub-body">
+              <div class="pub-title">Implementation of Indirect Field Oriented Control Using Space Vector Pulse Width Modulation for the Control of Induction Motor</div>
+              <div class="pub-authors">Kasula, S., Shrestha, B., Katwal, K., &amp; Dahal, R.</div>
+              <div class="pub-journal">International Journal on Engineering Technology, Vol. 1(1), pp. 139–152</div>
+              <div class="pub-badges">
+                <span class="pub-badge badge-published">Published</span>
+                <span class="pub-badge badge-doi"><a href="https://doi.org/10.3126/injet.v1i1.60936" target="_blank" style="color:inherit;text-decoration:none;">DOI ↗</a></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pub-item">
+            <div class="pub-year">Forthcoming</div>
+            <div class="pub-body">
+              <div class="pub-title">Modeling and Optimization of Separately Excited DC Motor Using Genetic Algorithm and Particle Swarm Optimization with Comparison of PID Performance Indices</div>
+              <div class="pub-authors">Sabin Kasula, Rajesh M. Pindoriya</div>
+              <div class="pub-journal">International Journal on Power Electronics · Inderscience</div>
+              <div class="pub-badges">
+                <span class="pub-badge badge-accepted">Accepted</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pub-item">
+            <div class="pub-year">Forthcoming</div>
+            <div class="pub-body">
+              <div class="pub-title">PQ Theory-Based Modeling and Simulation of a Shunt Active Power Filter for Improving Power Quality</div>
+              <div class="pub-authors">Sabin Kasula</div>
+              <div class="pub-journal">Journal of Science and Engineering · NepJol</div>
+              <div class="pub-badges">
+                <span class="pub-badge badge-accepted">Accepted</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pub-item">
+            <div class="pub-year">2026</div>
+            <div class="pub-body">
+              <div class="pub-title">Design and Simulation of a PQ Theory-Based Shunt Active Power Filter with Parameter Selection and Optimized PI Controller for Power Quality Enhancement</div>
+              <div class="pub-authors">Sabin Kasula, Rajesh M. Pindoriya, Jeetendra Chaudhary</div>
+              <div class="pub-journal">IEEE SeFET 2026 · IEEE Xplore</div>
+              <div class="pub-badges">
+                <span class="pub-badge badge-accepted">Accepted</span>
+                <span class="pub-badge badge-ieee">IEEE</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pub-item">
+            <div class="pub-year">2026 →</div>
+            <div class="pub-body">
+              <div class="pub-title">PQ Theory-Based Modelling and Simulation of a Shunt Active Power Filter for Improving Power Quality Using Optimized PI Controller</div>
+              <div class="pub-authors">Supervised by Dr. Rajesh M. Pindoriya and Jeetendra Chaudhary</div>
+              <div class="pub-journal">MSc Thesis · Pulchowk Campus, TU · Dept. of Electrical Engineering</div>
+              <div class="pub-badges">
+                <span class="pub-badge badge-thesis">MSc Thesis</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- RECOGNITION -->
+    <div class="content-section" id="section-awards">
+      <div class="section-card">
+        <div class="section-card-header"><div class="section-card-title">Recognition &amp; Memberships</div></div>
+        <div class="section-card-body">
+          <div class="award-item">
+            <div class="award-icon">🥇</div>
+            <div class="award-body">
+              <div class="award-name">Semester Topper — All Four Semesters</div>
+              <div class="award-org">MSc Power Electronics &amp; Drive Engineering · Pulchowk Campus, TU · 2024–2026 (85.75% / 84.75% / 91% / 89%)</div>
+            </div>
+          </div>
+          <div class="award-item">
+            <div class="award-icon">🪪</div>
+            <div class="award-body">
+              <div class="award-name">Registered Engineer — NEC No. 3032 Electrical 'A'</div>
+              <div class="award-org">Nepal Engineering Council</div>
+            </div>
+          </div>
+          <div class="award-item">
+            <div class="award-icon">🏛</div>
+            <div class="award-body">
+              <div class="award-name">Member, Nepal Engineers' Association (NEA)</div>
+              <div class="award-org">Nepal Engineers' Association</div>
+            </div>
+          </div>
+          <div class="award-item">
+            <div class="award-icon">📖</div>
+            <div class="award-body">
+              <div class="award-name">External Examiner — Kathmandu Valley Colleges</div>
+              <div class="award-org">Multiple Tribhuvan University affiliated colleges · Electrical Engineering examinations</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="content-section" id="section-contact">
+      <div class="section-card">
+        <div class="section-card-header"><div class="section-card-title">Get in Touch</div></div>
+        <div class="section-card-body">
+          <p class="bio-text" style="margin-bottom:1.25rem;">
+            Whether you're a student with a question, a fellow researcher, or a journal editor, or an institution looking for collaboration — feel free to reach out. Sabin is also available for external examination and project supervision.
+          </p>
+          <div class="contact-grid">
+            <div class="contact-card">
+              <div class="contact-card-icon">✉</div>
+              <div>
+                <div class="contact-card-label">Personal Email</div>
+                <div class="contact-card-value"><a href="mailto:sabin.kasula@gmail.com">sabin.kasula@gmail.com</a></div>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-card-icon">🏫</div>
+              <div>
+                <div class="contact-card-label">Institutional Email</div>
+                <div class="contact-card-value"><a href="mailto:sabin@khec.edu.np">sabin@khec.edu.np</a></div>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-card-icon">📞</div>
+              <div>
+                <div class="contact-card-label">Phone</div>
+                <div class="contact-card-value"><a href="tel:+9779849749272">+977-9849749272</a></div>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-card-icon">📍</div>
+              <div>
+                <div class="contact-card-label">Location</div>
+                <div class="contact-card-value">Changunarayan 02, Bhaktapur, Nepal</div>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-card-icon">🎓</div>
+              <div>
+                <div class="contact-card-label">Google Scholar</div>
+                <div class="contact-card-value"><a href="https://scholar.google.com/citations?user=IILcKUYAAAAJ&hl=en" target="_blank">Sabin Kasula ↗</a></div>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-card-icon">🔬</div>
+              <div>
+                <div class="contact-card-label">ResearchGate</div>
+                <div class="contact-card-value"><a href="https://www.researchgate.net/profile/Sabin-Kasula" target="_blank">sabin-kasula ↗</a></div>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-card-icon">🔗</div>
+              <div>
+                <div class="contact-card-label">LinkedIn</div>
+                <div class="contact-card-value"><a href="https://www.linkedin.com/in/sabin-kasula-687825193/" target="_blank">sabin-kasula ↗</a></div>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-card-icon">📄</div>
+              <div>
+                <div class="contact-card-label">ORCID iD</div>
+                <div class="contact-card-value"><a href="https://orcid.org/0009-0007-0618-6706" target="_blank">0009-0007-0618-6706 ↗</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  function showSection(name, trigger) {
+    document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.section-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+    document.querySelectorAll('.header-nav a').forEach(a => a.classList.remove('active'));
+    const sec = document.getElementById('section-' + name);
+    if (sec) sec.classList.add('active');
+    const tab = document.getElementById('tab-' + name);
+    if (tab) tab.classList.add('active');
+    const nav = document.getElementById('nav-' + name);
+    if (nav) nav.classList.add('active');
+    if (trigger && trigger.closest && trigger.closest('.header-nav')) trigger.classList.add('active');
+  }
+</script>
+</body>
+</html>
